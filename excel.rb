@@ -4,7 +4,7 @@ class Excel
 	def initialize(file_path)
     @xls = Roo::Spreadsheet.open(file_path)
     # Create a new Excel workbook
-		@workbook = WriteXLSX.new("#{Dir.pwd}/tmp/ruby.xlsx")
+		@workbook = WriteXLSX.new("#{Dir.pwd}/tmp/excel_result.xlsx")
 	# Add a worksheet
 		@worksheet = @workbook.add_worksheet
 		@worksheet.set_column(0, 0, 20)
@@ -60,5 +60,5 @@ class Excel
   end
 end
 
-excel = Excel.new("test.xlsx")
+excel = Excel.new("#{Dir.pwd}/tmp/excel.xlsx")
 excel.emails
