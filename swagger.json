@@ -1,0 +1,329 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the API documentation of [Your Company Name]\n",
+    "version" : "1.0.0",
+    "title" : "Your Company Name API Documentation",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "url.to.your.website",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/" : {
+      "get" : {
+        "summary" : "Return active sensors within the last 15 minutes",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Sensors"
+              },
+              "example" : [ "Nectar_v0.85_Dev", "NCTR_085_batINIT", "NCTR_085_battest", "NCTR_085_bat-pow" ]
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/recent" : {
+      "get" : {
+        "summary" : "Return active sensors within the last 30 minutes",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Sensors"
+              },
+              "example" : [ "NCTR_085_battest", "NCTR_085_batINIT", "NCTR_085_bat-pow" ]
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/lasthour" : {
+      "get" : {
+        "summary" : "Return active sensors within the last hour",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Sensors"
+              },
+              "example" : [ "NCTR_085_battest", "NCTR_085_batINIT", "NCTR_085_bat-pow" ]
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/post" : {
+      "post" : {
+        "summary" : "Add new nectar sensor data",
+        "operationId" : "postNectarSensorData",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "nectar_sensor_data",
+          "description" : "A JSON object containing nectar sensor data",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/nectar_sensor_data"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "HW Version" : {
+                  "type" : "integer",
+                  "example" : 5556
+                },
+                "Packet Version" : {
+                  "type" : "integer",
+                  "example" : 2
+                },
+                "Sequence Number" : {
+                  "type" : "integer",
+                  "example" : 15
+                },
+                "Timestamp" : {
+                  "type" : "string",
+                  "example" : "2018-09-30 6:15"
+                },
+                "Sensor Name" : {
+                  "type" : "integer",
+                  "example" : 18
+                },
+                "channel_1_current" : {
+                  "type" : "integer",
+                  "example" : 3
+                },
+                "channel_1_counts" : {
+                  "type" : "integer",
+                  "example" : 4
+                },
+                "channel_1_gain" : {
+                  "type" : "integer",
+                  "example" : 7
+                },
+                "channel_2_current" : {
+                  "type" : "integer",
+                  "example" : 3
+                },
+                "channel_2_counts" : {
+                  "type" : "integer",
+                  "example" : 4
+                },
+                "channel_2_gain" : {
+                  "type" : "integer",
+                  "example" : 5
+                },
+                "Reserved" : {
+                  "type" : "integer",
+                  "example" : 4
+                },
+                "Glucose Data" : {
+                  "type" : "integer",
+                  "example" : 6
+                },
+                "Glucose Flags" : {
+                  "type" : "integer",
+                  "example" : 5
+                },
+                "SMBG Reading" : {
+                  "type" : "string",
+                  "example" : "test"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Sensors" : {
+      "type" : "string",
+      "xml" : {
+        "name" : "Sensors"
+      }
+    },
+    "nectar_sensor_data" : {
+      "type" : "object",
+      "properties" : {
+        "hw_version" : {
+          "type" : "integer",
+          "example" : 5556
+        },
+        "packet_version" : {
+          "type" : "integer",
+          "example" : 2
+        },
+        "sequence_number" : {
+          "type" : "integer",
+          "example" : 15
+        },
+        "timestamp" : {
+          "type" : "string",
+          "example" : "2018-09-30 6:15"
+        },
+        "sensor_name" : {
+          "type" : "integer",
+          "example" : 18
+        },
+        "channel_1_current" : {
+          "type" : "integer",
+          "example" : 3
+        },
+        "channel_1_counts" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "channel_1_gain" : {
+          "type" : "integer",
+          "example" : 7
+        },
+        "channel_2_current" : {
+          "type" : "integer",
+          "example" : 3
+        },
+        "channel_2_counts" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "channel_2_gain" : {
+          "type" : "integer",
+          "example" : 5
+        },
+        "reserved" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "glucose_data" : {
+          "type" : "integer",
+          "example" : 6
+        },
+        "glucose_flags" : {
+          "type" : "integer",
+          "example" : 5
+        },
+        "smbg_reading" : {
+          "type" : "string",
+          "example" : "test"
+        }
+      }
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "HW Version" : {
+          "type" : "integer",
+          "example" : 5556
+        },
+        "Packet Version" : {
+          "type" : "integer",
+          "example" : 2
+        },
+        "Sequence Number" : {
+          "type" : "integer",
+          "example" : 15
+        },
+        "Timestamp" : {
+          "type" : "string",
+          "example" : "2018-09-30 6:15"
+        },
+        "Sensor Name" : {
+          "type" : "integer",
+          "example" : 18
+        },
+        "channel_1_current" : {
+          "type" : "integer",
+          "example" : 3
+        },
+        "channel_1_counts" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "channel_1_gain" : {
+          "type" : "integer",
+          "example" : 7
+        },
+        "channel_2_current" : {
+          "type" : "integer",
+          "example" : 3
+        },
+        "channel_2_counts" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "channel_2_gain" : {
+          "type" : "integer",
+          "example" : 5
+        },
+        "Reserved" : {
+          "type" : "integer",
+          "example" : 4
+        },
+        "Glucose Data" : {
+          "type" : "integer",
+          "example" : 6
+        },
+        "Glucose Flags" : {
+          "type" : "integer",
+          "example" : 5
+        },
+        "SMBG Reading" : {
+          "type" : "string",
+          "example" : "test"
+        }
+      },
+      "example" : {
+        "Sensor Name" : 18,
+        "channel_2_gain" : 5,
+        "channel_2_current" : 3,
+        "Packet Version" : 2,
+        "Timestamp" : "2018-09-30 6:15",
+        "channel_2_counts" : 4,
+        "Sequence Number" : 15,
+        "Glucose Data" : 6,
+        "channel_1_gain" : 7,
+        "Glucose Flags" : 5,
+        "channel_1_counts" : 4,
+        "channel_1_current" : 3,
+        "HW Version" : 5556,
+        "SMBG Reading" : "test",
+        "Reserved" : 4
+      }
+    }
+  }
+}
