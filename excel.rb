@@ -19,10 +19,10 @@ class Excel
   	names = @xls.column(1)
   	count = 1
   	@worksheet.write(0,   0, "Website")
-		@worksheet.write(0,   1, "Company")
-		@worksheet.write(0,   2, "First Name")
-		@worksheet.write(0,   3, "Last Name")
-		@worksheet.write(0,   4, "Email")
+	@worksheet.write(0,   1, "Company")
+	@worksheet.write(0,   2, "First Name")
+	@worksheet.write(0,   3, "Last Name")
+	@worksheet.write(0,   4, "Email")
 
   	names.each_with_index do |name, idx|
   		email = emails[idx]
